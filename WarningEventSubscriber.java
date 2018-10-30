@@ -1,4 +1,4 @@
-package com.cor.cep.subscriber;
+package com.isd.cep.subscriber;
 
 import java.util.Map;
 
@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.cor.cep.event.CDEvent;
+import com.isd.cep.event.CDEvent;
 
 /**
  * Wraps Esper Statement and Listener. No dependency on Esper libraries.
@@ -49,11 +49,11 @@ public class WarningEventSubscriber implements StatementSubscriber {
         CDEvent cd2 = (CDEvent) eventMap.get("cd2");
 
         StringBuilder sb = new StringBuilder();
-        sb.append("---------------------------------------------------------------------------------");
+        sb.append("----------------------------------------------------------------------------------------");
         sb.append("\n- [WARNING] : Etching Equipment #1 - Virtual Metrology CD SPIKE DETECTED !!!\n");
-        sb.append("              Detect #1 : " + cd1 + " > ");
-        sb.append("\n              Detect #2 : " + cd2);
-        sb.append("\n---------------------------------------------------------------------------------");
+        sb.append("              [Detect] " + cd1 + " > ");
+        sb.append("\n              [Detect] " + cd2);
+        sb.append("\n----------------------------------------------------------------------------------------");
 
         LOG.debug(sb.toString());
     }    
