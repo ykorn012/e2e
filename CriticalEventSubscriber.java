@@ -1,4 +1,4 @@
-package com.cor.cep.subscriber;
+package com.isd.cep.subscriber;
 
 import java.util.Map;
 
@@ -6,8 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.cor.cep.event.CDEvent;
 import com.espertech.esper.client.EPServiceProvider;
+import com.espertech.esper.client.EPServiceProviderManager;
+import com.isd.cep.event.CDEvent;
 
 /**
  * Wraps Esper Statement and Listener. No dependency on Esper libraries.
@@ -64,14 +65,16 @@ public class CriticalEventSubscriber implements StatementSubscriber {
 
         StringBuilder sb = new StringBuilder();
        
-        sb.append("****************************************************************************************");
-        sb.append("\n* [CRITICAL] : Etching Equipment #1 - Actual Metrology CRITICAL EVENT DETECTED!!!\n");
-        sb.append("               Detect #1 : " + cd1 + " > ");
-        sb.append("\n               Detect #2 : " + cd2 + " > ");
-        sb.append("\n               Detect #3 : " + cd3 + " > ");
-        sb.append("\n               Detect #4 : " + cd4);
-        sb.append("\n****************************************************************************************");
-                
+        sb.append("**************************************************************************************");
+        sb.append("\n- [CRITICAL] : Etching Equipment #1 - Actual Metrology CRITICAL EVENT DETECTED!!!\n");
+        sb.append("               [Detect] " + cd1 + " > ");
+        sb.append("\n               [Detect] " + cd2 + " > ");
+        sb.append("\n               [Detect] " + cd3 + " > ");
+        sb.append("\n               [Detect] " + cd4);
+        sb.append("\n**************************************************************************************");
+        
+        epService = EPServiceProviderManager.getDefaultProvider();
+        epService.getEPRuntime().setVariableValue("CurrentEvent", "CRITICAL");
         LOG.debug(sb.toString());
     }    
 }
