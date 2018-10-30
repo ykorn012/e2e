@@ -1,4 +1,4 @@
-package com.cor.cep.event;
+package com.isd.cep.event;
 
 import java.util.Date;
 
@@ -8,9 +8,9 @@ import java.util.Date;
  */
 public class CDEvent {
 	
-	/** Wafer Index in Etching. */
-	int index = 0;
-	
+	/** id in wafer. */
+    int index;
+    
     /** CD in Etching. */
     private int cd;
     
@@ -19,10 +19,11 @@ public class CDEvent {
     
     /**
      * Single value constructor.
-     * @param value CD in Etching.
+     * @param value CD in Etching Machine.
      */
     /**
      * CD constructor.
+     * @param index waferId in Etching Machine
      * @param CD CD in Etching
      * @param timeOfReading Time of Reading
      */
@@ -32,15 +33,14 @@ public class CDEvent {
         this.timeOfReading = timeOfReading;
     }
 
-    /**
-     * Get the CD.
-     * @return CD in Celsius
-     */
-    
     public int getIndex() {
         return index;
     }
     
+    /**
+     * Get the CD.
+     * @return CD in Etching Machine
+     */
     public int getCD() {
         return cd;
     }
@@ -55,7 +55,7 @@ public class CDEvent {
 
     @Override
     public String toString() {
-        return "Etching Actual Metrology : Sampling Wafer #" + index + " CD : [" + cd + "mm]";
+    	return "Etching Actual Metrology : Sampling Wafer #" + index + " CD [" + cd + " mm]";
     }
 
 }
